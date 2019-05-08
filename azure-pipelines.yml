@@ -5,7 +5,7 @@ pool:
   vmImage: 'Ubuntu-16.04'
 
 variables:
-  imageName: 'ansheno/bootcamp-demo'
+  imageName: 'ansheno/bootcamp-demo2'
 
 steps:
 - task: Docker@2
