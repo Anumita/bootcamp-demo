@@ -4,6 +4,7 @@ from random import randrange
 from flask import Flask
 from prometheus_client import start_http_server, Counter
 import os
+import sys
 
 app = Flask('bootcamp-demo')
 c = Counter('requests', 'Number of requests served, by custom_status', ['custom_status'])
@@ -12,9 +13,11 @@ c = Counter('requests', 'Number of requests served, by custom_status', ['custom_
 def hello():
     if randrange(1, 100) > 60:
         c.labels(custom_status = 'bad').inc()
+        print("bad request", file=sys.stderr)
         return "Internal Server Error\n", 500
     else:
         c.labels(custom_status = 'good').inc()
+        print("good request")
         return "Hello World!\n", 200
 
 start_http_server(8000)
