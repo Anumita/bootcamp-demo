@@ -17,7 +17,7 @@ def hello():
         return "Internal Server Error\n", 500
     else:
         c.labels(custom_status = 'good').inc()
-        print("good request")
+        print "good request"
         return "Hello World!\n", 200
 
 start_http_server(8000)
