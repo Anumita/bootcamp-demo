@@ -1,25 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: bootcamp-demo
+  name: doggopy-demo-canary
+  namespace: doggo
   labels:
-    app: bootcamp-demo
+    app: doggopy-demo-canary
 spec:
   replicas: 6
   selector:
     matchLabels:
-      app: bootcamp-demo
+      app: doggopy-demo-canary
   template:
     metadata:
       annotations:
         prometheus.io/scrape: "true"
       labels:
-        app: bootcamp-demo
+        app: doggopy-demo-canary
     spec:
       containers:
-      - name: bootcamp-demo
-        image: ansheno/bootcamp-demo2
+      - name: doggopy-demo-canary
+        image: ansheno/doggopy-demo:v2
         imagePullPolicy: Always
+        env:
+        - name: APP_VERSION
+          value: "2"
         ports:
         - containerPort: 8000
         - containerPort: 8080

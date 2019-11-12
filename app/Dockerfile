@@ -2,8 +2,8 @@ FROM python:3-slim
 
 WORKDIR /
 
-RUN pip install flask prometheus_client
+RUN pip install flask datadog
 COPY app.py /app.py
 
 STOPSIGNAL SIGINT
-CMD ["python", "-u", "/app.py"]
+CMD ["python", "/app.py"]
